@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 	"net/http"
 
 	"github.com/gorilla/websocket"
@@ -41,7 +42,8 @@ func reader(conn *websocket.Conn) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	log.Println("requested homepage")
-	fmt.Fprintf(w, "Home Page")
+	timestamp := time.Now().Format(time.RFC3339)
+	fmt.Fprintf(w, timestamp)
 }
 
 func wsEndpoint(w http.ResponseWriter, r *http.Request) {
